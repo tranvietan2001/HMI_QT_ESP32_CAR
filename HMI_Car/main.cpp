@@ -1,5 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QSerialPort>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -7,6 +9,26 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
     QGuiApplication app(argc, argv);
+
+
+
+    qDebug() << "hello";
+    QSerialPort* COMPORT;
+    COMPORT = new QSerialPort;
+    COMPORT->setPortName("/dev/ttyUSB0");
+    COMPORT->setBaudRate(QSerialPort::BaudRate::Baud9600);
+    COMPORT->open(QIODevice::ReadWrite);
+    if(COMPORT->isOpen()){
+
+        qDebug() << "OPEN: " << COMPORT->readAll();
+        COMPORT->write("OPEN");
+
+
+    }else{
+        qDebug() << "ERR" << COMPORT->error() << COMPORT->portName();
+    }
+
+
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
