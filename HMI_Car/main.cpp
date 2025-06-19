@@ -1,7 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QSerialPort>
-#include <QDebug>
+#include <QQmlContext>
+#include "SerialManage.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,27 +10,12 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
-
-
-    qDebug() << "hello";
-    QSerialPort* COMPORT;
-    COMPORT = new QSerialPort;
-    COMPORT->setPortName("/dev/ttyUSB0");
-    COMPORT->setBaudRate(QSerialPort::BaudRate::Baud9600);
-    COMPORT->open(QIODevice::ReadWrite);
-    if(COMPORT->isOpen()){
-
-        qDebug() << "OPEN: " << COMPORT->readAll();
-        COMPORT->write("OPEN");
-
-
-    }else{
-        qDebug() << "ERR" << COMPORT->error() << COMPORT->portName();
-    }
-
-
-
     QQmlApplicationEngine engine;
+
+
+    SerialManage serialManage;
+    engine.rootContext()->setContextProperty("serialManage", &serialManage);
+
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(
         &engine,
