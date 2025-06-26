@@ -1,5 +1,11 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>image/background_metter.png</file>
+        <file>image/engine temperature.png</file>
+        <file>image/indicator.png</file>
+        <file>image/in_val.png</file>
+        <file>image/in_val_warn.png</file>
+        <file>image/car_center.png</file>
     </qresource>
 </RCC>
