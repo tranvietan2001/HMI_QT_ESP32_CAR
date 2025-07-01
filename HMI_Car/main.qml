@@ -10,8 +10,8 @@ Window {
     title: qsTr("HMI-Meter")
 
     Image {
-        id: backgroundMetter
-        source: "image/background_metter.png"
+        id: imgBackgroundMetter
+        source: "image/background_meter.png"
     }
 
     Rectangle{
@@ -22,9 +22,74 @@ Window {
         x: 59
         y: 105
 
+        Rectangle{
+            id: recIndicatorTacho
+            width: 410
+            height: 16
+            color: "transparent"
+            anchors.centerIn: recTachoBg
+            rotation: 200  // -20 ~200
+            Image {
+                id: imgIndicatorTacho
+                source: "image/indicator.png"
+                anchors{
+                    left: recIndicatorTacho.left
+                    leftMargin: 20
+                }
+            }
+        }
+
         Image {
-            id: scopeValTachoBg
+            id: imgScopeValTachoBg
             source: "image/in_val.png"
+        }
+
+        Image {
+            id: imgEngTemp
+            source: "image/engine_temp_indicartor.png"
+            anchors{
+                bottom: recTachoBg.bottom
+                bottomMargin: 30
+                horizontalCenter: recTachoBg.horizontalCenter
+            }
+        }
+
+        Rectangle{
+            id: recIndicatorEngTemp
+            width: 300
+            height: 16
+            color: "transparent"
+            rotation: 300
+            anchors.centerIn: recTachoBg
+
+            Image {
+                id: imgEngTempIndicator
+                source: "image/indicator_2.png"
+                rotation: 90
+                smooth: true
+                anchors{
+                    left: recIndicatorEngTemp.left
+                    leftMargin: 3
+
+                }
+            }
+        }
+
+        Item{
+
+            FontLoader{
+                id: myFont
+                source: "font/font_utm_micra.TTF"
+            }
+
+            Text {
+                id: checkTXT
+                text: qsTr("9000")
+                color: "red"
+                font.pointSize: 50
+                font.family: myFont.font.family
+
+            }
         }
     }
 
@@ -37,9 +102,26 @@ Window {
         y: 104
         // opacity: 0.5
 
+        Rectangle{
+            id: recIndicatorSpeed
+            width: 410
+            height: 16
+            color: "transparent"
+            anchors.centerIn: recSpeedBg
+            rotation: -20
+            Image {
+                id: imgIndicatorSpeed
+                source: "image/indicator.png"
+                anchors{
+                    left: recIndicatorSpeed.left
+                    leftMargin: 20
+                }
+            }
+        }
+
         Image {
-            id: scopeValSpeedBg
-            source: "image/in_val_warn.png"
+            id: imgScopeValSpeedBg
+            source: "image/in_val.png"
         }
     }
 
