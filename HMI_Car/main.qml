@@ -46,7 +46,7 @@ Window {
 
         Image {
             id: imgEngTemp
-            source: "image/engine_temp_indicartor.png"
+            source: "image/engine_temp_indicator.png"
             anchors{
                 bottom: recTachoBg.bottom
                 bottomMargin: 30
@@ -59,7 +59,7 @@ Window {
             width: 300
             height: 16
             color: "transparent"
-            rotation: 300
+            rotation: 239 //305~239
             anchors.centerIn: recTachoBg
 
             Image {
@@ -69,27 +69,18 @@ Window {
                 smooth: true
                 anchors{
                     left: recIndicatorEngTemp.left
-                    leftMargin: 3
+                    leftMargin: 10
 
                 }
             }
         }
 
-        Item{
-
-            FontLoader{
-                id: myFont
-                source: "font/font_utm_micra.TTF"
-            }
-
-            Text {
-                id: checkTXT
-                text: qsTr("9000")
-                color: "red"
-                font.pointSize: 50
-                font.family: myFont.font.family
-
-            }
+        Text {
+            id: checkTXT
+            text: qsTr("9000")
+            color: "red"
+            font.pointSize: 50
+            font.family: myFont.font.family
         }
     }
 
@@ -123,6 +114,37 @@ Window {
             id: imgScopeValSpeedBg
             source: "image/in_val.png"
         }
+
+        Image {
+            id: imgFuel
+            source: "image/fuel_indicator.png"
+            anchors{
+                bottom: recSpeedBg.bottom
+                bottomMargin: 30
+                horizontalCenter: recSpeedBg.horizontalCenter
+            }
+        }
+
+        Rectangle{
+            id: recIndicatorFuel
+            width: 300
+            height: 16
+            color: "transparent"
+            rotation: 239 //305~239
+            anchors.centerIn: recSpeedBg
+
+            Image {
+                id: imgFuelIndicator
+                source: "image/indicator_2.png"
+                rotation: 90
+                smooth: true
+                anchors{
+                    left: recIndicatorFuel.left
+                    leftMargin: 10
+                }
+            }
+        }
+
     }
 
     Rectangle{
@@ -147,4 +169,11 @@ Window {
 
         }
     }
+
+
+    FontLoader{
+        id: myFont
+        source: "font/font_utm_micra.TTF"
+    }
+
 }
